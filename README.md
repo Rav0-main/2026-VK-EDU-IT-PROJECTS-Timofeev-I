@@ -309,7 +309,6 @@
                 <li>Food</li>
                 <li>Energy</li>
                 <li>Calculate</li>
-                <li>Stats</li>
                 <li>Recommendations</li>
             </ul>
         </td>
@@ -429,13 +428,13 @@
 
 ### 3. Оценить калорийность продукта
 
-`POST v1/food/calculate/stats`
+`POST v1/food/calculate/energy`
 
 **Input**:
 ```json
 {
     "food_input_type": String,
-    
+
     "food_name": String,
     "food_composition": String,
     "food_image": String,
@@ -448,9 +447,9 @@
 **Output**:
 |HTTP status code|JSON body|
 |:-|:-:|
-|200|`{ "food_name": String, "food_stats_html": HTML}`|
-|204|`{ "food_name": "Wrong food name", "food_stats_html": "No food composition"}` |
-|400|`{ "food_name": "Wrong request parameters", "food_stats_html": "Bad request"}`|
+|200|`{ "food_name": String, "food_energy": {"callories": Int, "protein": Int, "fats": Int, "sugar": Int}}`|
+|204|`{ "food_name": "Wrong food name", "food_energy": "No food composition"}` |
+|400|`{ "food_name": "Wrong request parameters", "food_energy": "Bad request"}`|
 
 ### 5. Просмотреть аналитику потребленной пищи с планом
 
@@ -465,13 +464,13 @@
                 "name": String,
                 "datetime": Datetime 
             },
-            "plan_stats": {
+            "plan_energy": {
                 "callories": Int,
                 "protein": Int,
                 "fats": Int,
                 "sugar": Int
             },
-            "real_stats": {
+            "real_energy": {
                 "callories": Int,
                 "protein": Int,
                 "fats": Int,
