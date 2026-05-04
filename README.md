@@ -7,6 +7,7 @@
 * [Домашнее задание №1](#домашнее-задание-1)
 * [Домашнее задание №2](#домашнее-задание-2)
 * [Домашнее задание №3](#домашнее-задание-3)
+* [Домашнее задание №4](#домашнее-задание-4)
 
 # Домашнее задание №1
 
@@ -428,7 +429,7 @@
 
 ### 3. Оценить калорийность продукта
 
-`POST v1/food/calculate/energy`
+`POST v1/food/calculate/energy/by_name`
 
 **Input**:
 ```json
@@ -436,9 +437,34 @@
     "food_input_type": String,
 
     "food_name": String,
-    "food_composition": String,
-    "food_image": String,
     
+    "food_mass": Int,
+    "food_was_eaten": Boolean
+}
+```
+
+**Input**:
+
+`POST v1/food/calculate/energy/by_composition`
+
+```json
+{
+    "food_composition": String,
+
+    "food_mass": Int,
+    "food_was_eaten": Boolean
+}
+```
+
+**Input**:
+
+`POST v1/food/calculate/energy/by_picture`
+
+```json
+{
+    "food_picture_path": String,
+    "food_picture": Photo,
+
     "food_mass": Int,
     "food_was_eaten": Boolean
 }
@@ -448,8 +474,8 @@
 |HTTP status code|JSON body|
 |:-|:-:|
 |200|`{ "food_name": String, "food_energy": {"callories": Int, "protein": Int, "fats": Int, "sugar": Int}}`|
-|204|`{ "food_name": "Wrong food name", "food_energy": "No food composition"}` |
-|400|`{ "food_name": "Wrong request parameters", "food_energy": "Bad request"}`|
+|204|`{ "food_name": "Wrong food content", "food_energy": "Food not found"}` |
+|400|`{ "food_name": "Wrong request parameters", "food_energy": "Bad request"}`|    
 
 ### 5. Просмотреть аналитику потребленной пищи с планом
 
@@ -481,3 +507,39 @@
     ]
 }
 ```
+
+# Домашнее задание №4
+
+## C4
+
+### 1-ый уровень: Context
+
+![C4 1st level: Context](/data/hw4/C4_1.png)
+
+### 2-ой уровень: Containers
+
+![C4 2nd level: Containers](/data/hw4/C4_2.png)
+
+## Стек
+
+### Frontend
+
+* TypeScript - типизированный JavaScript, легче в поддержке.
+* React - популярный фреймворк для Frontend разработки, используемый во многих командах.
+
+### Mobile
+
+* WebView - меньше затрат в разработке, так как стек Frontend'a тяжелый.
+
+### Балансировщик нагрузки
+
+* Nginx
+
+### Backend
+
+* Go - основная бизнес-логика - это микросервисная архитектура. Медиана в стоимости/скорости разработки.
+* Python (FastAPI) - для сервисов, которые перевызывают API AI-инструментов.
+
+### Database
+
+* PostgreSQL
